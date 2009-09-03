@@ -163,7 +163,7 @@ class NetflixUser():
         
         return ret
 
-    def getRentalHistory(self,type=None,startIndex=None,
+    def getRentalHistory(self,historyType=None,startIndex=None,
                                     maxResults=None,updatedMin=None):
         accessToken=self.accessToken
         parameters = {}
@@ -179,10 +179,10 @@ class NetflixUser():
                                     accessToken['key'],
                                     accessToken['secret'] )
 
-        if not type:
+        if not historyType:
             requestUrl = '/users/%s/rental_history' % (accessToken.key)
         else:
-            requestUrl = '/users/%s/rental_history/%s' % (accessToken.key,type)
+            requestUrl = '/users/%s/rental_history/%s' % (accessToken.key,historyType)
         
         try:
             info = simplejson.loads( self.client._getResource( 
@@ -290,7 +290,7 @@ class NetflixUserQueue:
             
     def getAvailable(self, sort=None, startIndex=None, 
                                     maxResults=None, updatedMin=None,
-                                    type='disc'):
+                                    queueType='disc'):
         parameters={}
         if startIndex:
             parameters['start_index'] = startIndex
@@ -303,7 +303,7 @@ class NetflixUserQueue:
 
         requestUrl = '/users/%s/queues/%s/available' % (
                                     self.user.accessToken.key,
-                                    type)
+                                    queueType)
         try:
             info = simplejson.loads(self.client._getResource( 
                                     requestUrl,
@@ -316,7 +316,7 @@ class NetflixUserQueue:
 
     def getSaved(self, sort=None, startIndex=None, 
                                     maxResults=None, updatedMin=None,
-                                    type='disc'):
+                                    queueType='disc'):
         parameters={}
         if startIndex:
             parameters['start_index'] = startIndex
@@ -329,7 +329,7 @@ class NetflixUserQueue:
 
         requestUrl = '/users/%s/queues/%s/saved' % (
                                     self.user.accessToken.key,
-                                    type)
+                                    queueType)
         try:
             info = simplejson.loads(self.client._getResource( 
                                     requestUrl,
@@ -340,7 +340,7 @@ class NetflixUserQueue:
         else:
             return info
  
-    def addTitle(self, discInfo=[], urls=[],type='disc',position=None):
+    def addTitle(self, discInfo=[], urls=[],queueType='disc',position=None):
         accessToken=self.user.accessToken
         parameters={}
         if position:
@@ -370,7 +370,7 @@ class NetflixUserQueue:
                                     parameters=parameters )
         return response
 
-    def removeTitle(self, id, type='disc'):
+    def removeTitle(self, id, queueType='disc'):
         accessToken=self.user.accessToken
         entryID = None
         parameters={}
