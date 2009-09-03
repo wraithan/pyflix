@@ -355,7 +355,7 @@ class NetflixUserQueue:
         if not urls:
             for disc in discInfo:
                 urls.append( disc['id'] )
-        parameters = { 'title_ref': ','.join(urls) }
+        parameters['title_ref'] = ','.join(urls)
 
         if not self.tag:
             response = self.client._getResource( 
