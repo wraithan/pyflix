@@ -1,3 +1,5 @@
+Forked from http://code.google.com/p/pyflix/
+
 Basic readme for the pyflix module.
 
 In order to use the system, you need to get a developer key/secret from the Netflix developer site.  You will need those for all requests to Netflix.
