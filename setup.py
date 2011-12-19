@@ -1,6 +1,6 @@
 from setuptools import setup
-setup(	name="Netflix",
+setup(	name="netflix",
 	version="1.0",
-	py_modules = ['Netflix'],
+	py_modules = ['netflix'],
 	install_requires=['oauth','simplejson']
 	)	
